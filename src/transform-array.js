@@ -15,14 +15,17 @@ module.exports = function transform(arr) {
     }
     else if(arr[i]=="--discard-prev")
     {
-      resArray.splice(i-1,1);
+      if((i-1)>=0 && arr[i-2]!=="--discard-next")
+      resArray.pop();
     }
     else if(arr[i]=="--double-next")
     {
-      resArray.push(arr[i]);
+     if(i<(arr.length-1))
+      resArray.push(arr[i+1]);
     }
     else if(arr[i]=="--double-prev")
     {
+      if((i-1)>=0 && arr[i - 2] !== '--discard-next')
       resArray.push(arr[i-1]);
     }
     else 
